@@ -1,0 +1,134 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* SWI Infinity Theme — #f4f6f3 background, #c48a7a rose gold accent */
+  --background: #f4f6f3;
+  --foreground: #1a1a1a;
+  --card: #ffffff;
+  --card-foreground: #1a1a1a;
+  --popover: #ffffff;
+  --popover-foreground: #1a1a1a;
+  --primary: #c48a7a;
+  --primary-foreground: #ffffff;
+  --secondary: #edeee9;
+  --secondary-foreground: #2d2d2d;
+  --muted: #e8ebe5;
+  --muted-foreground: #6b6b6b;
+  --accent: #c48a7a;
+  --accent-foreground: #ffffff;
+  --destructive: #dc2626;
+  --destructive-foreground: #dc2626;
+  --border: #d6d9d2;
+  --input: #d6d9d2;
+  --ring: #c48a7a;
+  --chart-1: #c48a7a;
+  --chart-2: #a87565;
+  --chart-3: #8b6357;
+  --chart-4: #d4a898;
+  --chart-5: #e0c0b4;
+  --radius: 0.5rem;
+  --sidebar: #f4f6f3;
+  --sidebar-foreground: #1a1a1a;
+  --sidebar-primary: #c48a7a;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #edeee9;
+  --sidebar-accent-foreground: #2d2d2d;
+  --sidebar-border: #d6d9d2;
+  --sidebar-ring: #c48a7a;
+
+  /* Custom extended tokens */
+  --rose-gold: #c48a7a;
+  --rose-gold-light: #d4a898;
+  --rose-gold-dark: #a87565;
+  --cream: #f4f6f3;
+  --cream-dark: #edeee9;
+  --charcoal: #2d2d2d;
+  --charcoal-light: #4a4a4a;
+}
+
+@theme inline {
+  --font-sans: 'Cormorant Garamond', 'Georgia', serif;
+  --font-serif: 'Cormorant Garamond', 'Georgia', serif;
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
+  --font-body: 'Montserrat', 'Geist', sans-serif;
+
+  --color-rose-gold: var(--rose-gold);
+  --color-rose-gold-light: var(--rose-gold-light);
+  --color-rose-gold-dark: var(--rose-gold-dark);
+  --color-cream: var(--cream);
+  --color-cream-dark: var(--cream-dark);
+  --color-charcoal: var(--charcoal);
+  --color-charcoal-light: var(--charcoal-light);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Montserrat', 'Geist', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cormorant Garamond', 'Georgia', serif;
+  }
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--cream);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--rose-gold-light);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--rose-gold);
+}
