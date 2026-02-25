@@ -50,8 +50,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${montserrat.variable}`}>
-      <body className="antialiased">
+    <html lang="en" className={`${cormorant.variable} ${montserrat.variable}`} suppressHydrationWarning>
+      <body className="antialiased" suppressHydrationWarning>
         {children}
         <Analytics />
       </body>

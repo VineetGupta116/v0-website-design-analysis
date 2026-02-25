@@ -112,7 +112,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-cream/10 pt-8 md:flex-row">
           <p className="font-[var(--font-montserrat)] text-xs text-cream/40">
-            &copy; {new Date().getFullYear()} SWI Infinity. All rights reserved.
+            &copy; 2026 SWI Infinity. All rights reserved.
           </p>
           <div className="flex gap-6">
             <Link
