@@ -64,7 +64,23 @@ export function HeroSection() {
             className="object-cover"
             priority={index === 0}
           />
-          <div className="absolute inset-0 bg-charcoal/40" />
+          {/*
+           * HERO OVERLAY — multi-stop gradient instead of a flat tint.
+           * - Top band (0-30%): slightly heavier to guarantee navbar/logo contrast
+           *   over any hero image, regardless of brightness.
+           * - Middle (30-60%): eases off so the image breathes and stays vivid.
+           * - Bottom (60-100%): heavier again to anchor text content and CTAs.
+           *
+           * Using oklch for perceptually uniform darkening.  The charcoal
+           * token (#2d2d2d) is the base; we just vary its alpha.
+           */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(to bottom, rgba(26,26,26,0.55) 0%, rgba(26,26,26,0.30) 35%, rgba(26,26,26,0.25) 55%, rgba(26,26,26,0.50) 100%)",
+            }}
+          />
         </div>
       ))}
 
