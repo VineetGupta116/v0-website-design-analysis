@@ -5,7 +5,13 @@ import { notFound } from "next/navigation"
 
 import { Footer } from "@/components/footer"
 import { Navbar } from "@/components/navbar"
-import { getProcedureBySlug } from "@/lib/procedures"
+import { getProcedureBySlug, procedures } from "@/lib/procedures"
+
+export async function generateStaticParams() {
+  return procedures.map((procedure) => ({
+    slug: procedure.slug,
+  }));
+}
 
 interface ProcedureDetailPageProps {
   params: Promise<{ slug: string }>
