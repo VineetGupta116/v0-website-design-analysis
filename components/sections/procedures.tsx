@@ -4,19 +4,24 @@ import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, ArrowUpRight } from "lucide-react"
+import {
+  allCategories,
+  categoryMeta,
+  getProceduresByCategory,
+  type ProcedureCategory,
+} from "@/lib/procedures"
 
-const categories = ["All", "Hair", "Body", "Face", "Skin"] as const
-
+const categories = ["All", ...allCategories] as const
 type Category = (typeof categories)[number]
 
-interface Procedure {
+interface ProcedureCard {
   title: string
   description: string
-  category: Exclude<Category, "All">
+  category: ProcedureCategory
   image: string
 }
 
-const procedures: Procedure[] = [
+const procedureCards: ProcedureCard[] = [
   {
     title: "Hair Transplant (FUE/FUT)",
     description:
@@ -75,20 +80,13 @@ const procedures: Procedure[] = [
   },
 ]
 
-const serviceCategories = [
-  { name: "Hair", count: 5, image: "/images/procedure-hair.jpg" },
-  { name: "Body", count: 12, image: "/images/procedure-body.jpg" },
-  { name: "Face", count: 24, image: "/images/procedure-face.jpg" },
-  { name: "Skin", count: 33, image: "/images/procedure-skin.jpg" },
-]
-
 export function ProceduresSection() {
   const [activeCategory, setActiveCategory] = useState<Category>("All")
 
   const filteredProcedures =
     activeCategory === "All"
-      ? procedures
-      : procedures.filter((p) => p.category === activeCategory)
+      ? procedureCards
+      : procedureCards.filter((p) => p.category === activeCategory)
 
   return (
     <section id="procedures" className="bg-cream-dark py-24 lg:py-32">
@@ -169,34 +167,38 @@ export function ProceduresSection() {
             Explore All Our Services
           </h3>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {serviceCategories.map((cat) => (
-              <Link
-                key={cat.name}
-                href="#"
-                className="group relative flex items-end overflow-hidden p-6"
-                style={{ minHeight: 180 }}
-              >
-                <Image
-                  src={cat.image}
-                  alt={cat.name}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-charcoal/50 transition-all group-hover:bg-charcoal/60" />
-                <div className="relative z-10">
-                  <h4 className="font-[var(--font-cormorant)] text-2xl font-semibold text-cream">
-                    {cat.name}
-                  </h4>
-                  <p className="font-[var(--font-montserrat)] text-xs text-cream/70">
-                    {cat.count} Procedures
-                  </p>
-                  <div className="mt-3 flex items-center gap-1 font-[var(--font-montserrat)] text-xs font-semibold uppercase tracking-wider text-rose-gold-light transition-colors group-hover:text-rose-gold">
-                    View All
-                    <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
+            {allCategories.map((catName) => {
+              const meta = categoryMeta[catName]
+              const count = getProceduresByCategory(catName).length
+              return (
+                <Link
+                  key={catName}
+                  href={meta.href}
+                  className="group relative flex items-end overflow-hidden p-6"
+                  style={{ minHeight: 180 }}
+                >
+                  <Image
+                    src={meta.image}
+                    alt={catName}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-charcoal/50 transition-all group-hover:bg-charcoal/60" />
+                  <div className="relative z-10">
+                    <h4 className="font-[var(--font-cormorant)] text-2xl font-semibold text-cream">
+                      {catName}
+                    </h4>
+                    <p className="font-[var(--font-montserrat)] text-xs text-cream/70">
+                      {count} Procedures
+                    </p>
+                    <div className="mt-3 flex items-center gap-1 font-[var(--font-montserrat)] text-xs font-semibold uppercase tracking-wider text-rose-gold-light transition-colors group-hover:text-rose-gold">
+                      View All
+                      <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
+                    </div>
                   </div>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              )
+            })}
           </div>
         </div>
       </div>
