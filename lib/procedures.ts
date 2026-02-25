@@ -121,3 +121,21 @@ export function getProceduresByCategory(category: ProcedureCategory): Procedure[
 }
 
 export const allCategories: ProcedureCategory[] = ["Hair", "Body", "Face", "Skin"]
+
+/**
+ * groupedProcedures — pre-computed, module-level cache of procedures grouped
+ * by category.  Computed once at import time so that every component that needs
+ * the grouped data shares the same reference (no per-render filtering).
+ *
+ * This matters in the mega-dropdown because it renders ~74 links across 4
+ * columns.  Re-filtering on every hover/state change is wasteful; a stable
+ * reference also lets React.memo / useMemo consumers skip diffing.
+ */
+export const groupedProcedures: Record<ProcedureCategory, Procedure[]> =
+  allCategories.reduce(
+    (acc, cat) => {
+      acc[cat] = procedures.filter((p) => p.category === cat)
+      return acc
+    },
+    {} as Record<ProcedureCategory, Procedure[]>,
+  )
