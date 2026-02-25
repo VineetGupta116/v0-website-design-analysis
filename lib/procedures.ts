@@ -1,94 +1,151 @@
-export type ProcedureCategory = "Hair" | "Body" | "Face" | "Skin"
+export type ProcedureCategory = "Hair" | "Face" | "Skin" | "Body"
+export type ProcedureDataCategory = "hair" | "face" | "skin" | "body"
 
 export interface Procedure {
   name: string
+  slug: string
+  category: ProcedureDataCategory
+  shortDescription: string
+  longDescription: string
+  imagePath: string
+  seoTitle: string
+  seoDescription: string
+  // Legacy field used by current UI routing.
   url: string
+}
+
+export type ProcedureNavItem = Omit<Procedure, "category"> & {
   category: ProcedureCategory
 }
 
+const categoryImageMap: Record<ProcedureDataCategory, string> = {
+  hair: "/images/procedure-hair.jpg",
+  face: "/images/procedure-face.jpg",
+  skin: "/images/procedure-skin.jpg",
+  body: "/images/procedure-body.jpg",
+}
+
+const createProcedure = (
+  name: string,
+  category: ProcedureDataCategory,
+  slug: string,
+  shortDescription: string,
+): Procedure => ({
+  name,
+  slug,
+  category,
+  shortDescription,
+  longDescription: `Detailed information for ${name} will be added soon.`,
+  imagePath: categoryImageMap[category],
+  seoTitle: `${name} | SWI Infinity`,
+  seoDescription: `${shortDescription} Learn more about ${name} at SWI Infinity.`,
+  url: `/${category}/${slug}`,
+})
+
 export const procedures: Procedure[] = [
-  // Hair
-  { name: "Hair Transplant (FUE)", url: "/hair/hair-transplant-fue", category: "Hair" },
-  { name: "Hair Transplant (FUT)", url: "/hair/hair-transplant-fut", category: "Hair" },
-  { name: "PRP Therapy for Hair", url: "/hair/prp-therapy", category: "Hair" },
-  { name: "Scalp Micropigmentation", url: "/hair/scalp-micropigmentation", category: "Hair" },
-  { name: "Laser Hair Restoration", url: "/hair/laser-hair-restoration", category: "Hair" },
-
-  // Body
-  { name: "Liposuction (HD / 360)", url: "/body/liposuction", category: "Body" },
-  { name: "Gynecomastia Surgery", url: "/body/gynecomastia", category: "Body" },
-  { name: "Tummy Tuck", url: "/body/tummy-tuck", category: "Body" },
-  { name: "Mommy Makeover", url: "/body/mommy-makeover", category: "Body" },
-  { name: "Arm Lift (Brachioplasty)", url: "/body/arm-lift", category: "Body" },
-  { name: "Thigh Lift", url: "/body/thigh-lift", category: "Body" },
-  { name: "Body Lift", url: "/body/body-lift", category: "Body" },
-  { name: "Buttock Augmentation", url: "/body/buttock-augmentation", category: "Body" },
-  { name: "Calf Implants", url: "/body/calf-implants", category: "Body" },
-  { name: "Fat Transfer", url: "/body/fat-transfer", category: "Body" },
-  { name: "Breast Augmentation", url: "/body/breast-augmentation", category: "Body" },
-  { name: "Breast Reduction", url: "/body/breast-reduction", category: "Body" },
-
-  // Face
-  { name: "Rhinoplasty", url: "/face/rhinoplasty", category: "Face" },
-  { name: "Blepharoplasty", url: "/face/blepharoplasty", category: "Face" },
-  { name: "Facelift", url: "/face/facelift", category: "Face" },
-  { name: "Neck Lift", url: "/face/neck-lift", category: "Face" },
-  { name: "Brow Lift", url: "/face/brow-lift", category: "Face" },
-  { name: "Otoplasty", url: "/face/otoplasty", category: "Face" },
-  { name: "Chin Augmentation", url: "/face/chin-augmentation", category: "Face" },
-  { name: "Cheek Augmentation", url: "/face/cheek-augmentation", category: "Face" },
-  { name: "Lip Augmentation", url: "/face/lip-augmentation", category: "Face" },
-  { name: "Jaw Contouring", url: "/face/jaw-contouring", category: "Face" },
-  { name: "Buccal Fat Removal", url: "/face/buccal-fat-removal", category: "Face" },
-  { name: "Dimple Creation", url: "/face/dimple-creation", category: "Face" },
-  { name: "Hair Line Lowering", url: "/face/hair-line-lowering", category: "Face" },
-  { name: "Facial Implants", url: "/face/facial-implants", category: "Face" },
-  { name: "Scar Revision", url: "/face/scar-revision", category: "Face" },
-  { name: "Cleft Lip Repair", url: "/face/cleft-lip-repair", category: "Face" },
-  { name: "Facial Fracture Repair", url: "/face/facial-fracture-repair", category: "Face" },
-  { name: "TMJ Surgery", url: "/face/tmj-surgery", category: "Face" },
-  { name: "Fat Grafting to Face", url: "/face/fat-grafting", category: "Face" },
-  { name: "Thread Lift", url: "/face/thread-lift", category: "Face" },
-  { name: "Under Eye Treatment", url: "/face/under-eye-treatment", category: "Face" },
-  { name: "Facial Feminization", url: "/face/facial-feminization", category: "Face" },
-  { name: "Mole / Cyst Removal", url: "/face/mole-cyst-removal", category: "Face" },
-  { name: "Ear Lobe Repair", url: "/face/ear-lobe-repair", category: "Face" },
-
-  // Skin
-  { name: "Botox", url: "/skin/botox", category: "Skin" },
-  { name: "Dermal Fillers", url: "/skin/dermal-fillers", category: "Skin" },
-  { name: "Chemical Peels", url: "/skin/chemical-peels", category: "Skin" },
-  { name: "Microdermabrasion", url: "/skin/microdermabrasion", category: "Skin" },
-  { name: "Microneedling", url: "/skin/microneedling", category: "Skin" },
-  { name: "Laser Skin Resurfacing", url: "/skin/laser-resurfacing", category: "Skin" },
-  { name: "Laser Hair Removal", url: "/skin/laser-hair-removal", category: "Skin" },
-  { name: "Laser Tattoo Removal", url: "/skin/laser-tattoo-removal", category: "Skin" },
-  { name: "IPL Photofacial", url: "/skin/ipl-photofacial", category: "Skin" },
-  { name: "PRP Facial (Vampire Facial)", url: "/skin/prp-facial", category: "Skin" },
-  { name: "Hydrafacial", url: "/skin/hydrafacial", category: "Skin" },
-  { name: "Carbon Laser Peel", url: "/skin/carbon-laser-peel", category: "Skin" },
-  { name: "Skin Tightening (HIFU)", url: "/skin/skin-tightening-hifu", category: "Skin" },
-  { name: "Meso Therapy", url: "/skin/meso-therapy", category: "Skin" },
-  { name: "Anti-Aging Treatment", url: "/skin/anti-aging", category: "Skin" },
-  { name: "Pigmentation Treatment", url: "/skin/pigmentation", category: "Skin" },
-  { name: "Acne / Scar Treatment", url: "/skin/acne-scar", category: "Skin" },
-  { name: "Vitiligo Treatment", url: "/skin/vitiligo", category: "Skin" },
-  { name: "Melasma Treatment", url: "/skin/melasma", category: "Skin" },
-  { name: "Stretch Mark Treatment", url: "/skin/stretch-marks", category: "Skin" },
-  { name: "Wart Removal", url: "/skin/wart-removal", category: "Skin" },
-  { name: "Dark Circle Treatment", url: "/skin/dark-circles", category: "Skin" },
-  { name: "Skin Tag Removal", url: "/skin/skin-tag-removal", category: "Skin" },
-  { name: "Keloid Treatment", url: "/skin/keloid", category: "Skin" },
-  { name: "Rosacea Treatment", url: "/skin/rosacea", category: "Skin" },
-  { name: "Hyperhidrosis (Sweat Treatment)", url: "/skin/hyperhidrosis", category: "Skin" },
-  { name: "IV Glutathione Therapy", url: "/skin/iv-glutathione", category: "Skin" },
-  { name: "Skin Whitening Treatment", url: "/skin/skin-whitening", category: "Skin" },
-  { name: "Dermatosis Treatment", url: "/skin/dermatosis", category: "Skin" },
-  { name: "Eczema Treatment", url: "/skin/eczema", category: "Skin" },
-  { name: "Psoriasis Treatment", url: "/skin/psoriasis", category: "Skin" },
-  { name: "Fungal Infection Treatment", url: "/skin/fungal-infection", category: "Skin" },
-  { name: "Nail Treatment", url: "/skin/nail-treatment", category: "Skin" },
+  createProcedure("Hair Transplant (FUE)", "hair", "hair-transplant-fue", "Follicular unit extraction for natural hairline restoration."),
+  createProcedure("Hair Transplant (FUT)", "hair", "hair-transplant-fut", "Strip method hair transplantation for higher graft yield."),
+  createProcedure("PRP Therapy for Hair", "hair", "prp-therapy", "Platelet-rich plasma treatment to support hair regrowth."),
+  createProcedure("Scalp Micropigmentation", "hair", "scalp-micropigmentation", "Non-surgical scalp pigmentation to improve hair density appearance."),
+  createProcedure("Laser Hair Restoration", "hair", "laser-hair-restoration", "Low-level laser treatment for improved scalp and hair health."),
+  createProcedure("Liposuction (HD / 360)", "body", "liposuction", "Advanced fat contouring for a sculpted body profile."),
+  createProcedure("Gynecomastia Surgery", "body", "gynecomastia", "Male chest reduction to restore a flatter contour."),
+  createProcedure("Tummy Tuck", "body", "tummy-tuck", "Abdominoplasty to tighten skin and core contours."),
+  createProcedure("Mommy Makeover", "body", "mommy-makeover", "Combined procedures to restore post-pregnancy body shape."),
+  createProcedure("Arm Lift (Brachioplasty)", "body", "arm-lift", "Upper arm reshaping to address loose skin and tissue."),
+  createProcedure("Thigh Lift", "body", "thigh-lift", "Thigh contouring for firmer and smoother leg profiles."),
+  createProcedure("Body Lift", "body", "body-lift", "Comprehensive lower body tightening and contour enhancement."),
+  createProcedure("Buttock Augmentation", "body", "buttock-augmentation", "Gluteal enhancement to improve shape and volume."),
+  createProcedure("Calf Implants", "body", "calf-implants", "Implant-based calf definition and volume enhancement."),
+  createProcedure("Fat Transfer", "body", "fat-transfer", "Autologous fat grafting to restore or enhance body volume."),
+  createProcedure("Breast Augmentation", "body", "breast-augmentation", "Breast volume enhancement for balanced body proportions."),
+  createProcedure("Breast Reduction", "body", "breast-reduction", "Breast reduction surgery for comfort and proportionality."),
+  createProcedure("Rhinoplasty", "face", "rhinoplasty", "Nose reshaping to improve facial harmony and breathing goals."),
+  createProcedure("Blepharoplasty", "face", "blepharoplasty", "Eyelid surgery for refreshed, youthful eye contours."),
+  createProcedure("Facelift", "face", "facelift", "Facial rejuvenation to reduce signs of aging and sagging."),
+  createProcedure("Neck Lift", "face", "neck-lift", "Neck contour improvement for a sharper jawline profile."),
+  createProcedure("Brow Lift", "face", "brow-lift", "Forehead and brow elevation for a more alert appearance."),
+  createProcedure("Otoplasty", "face", "otoplasty", "Ear reshaping surgery to improve ear symmetry and position."),
+  createProcedure("Chin Augmentation", "face", "chin-augmentation", "Chin enhancement for improved profile balance."),
+  createProcedure("Cheek Augmentation", "face", "cheek-augmentation", "Midface volume enhancement for defined cheek contours."),
+  createProcedure("Lip Augmentation", "face", "lip-augmentation", "Lip volume and shape enhancement for natural fullness."),
+  createProcedure("Jaw Contouring", "face", "jaw-contouring", "Surgical contouring for a more defined jaw structure."),
+  createProcedure("Buccal Fat Removal", "face", "buccal-fat-removal", "Targeted cheek slimming to accentuate facial definition."),
+  createProcedure("Dimple Creation", "face", "dimple-creation", "Minor cosmetic procedure to create natural-looking dimples."),
+  createProcedure("Hair Line Lowering", "face", "hair-line-lowering", "Forehead reduction to lower and refine hairline position."),
+  createProcedure("Facial Implants", "face", "facial-implants", "Implant procedures to augment facial structure and balance."),
+  createProcedure("Scar Revision", "face", "scar-revision", "Surgical scar refinement for improved skin appearance."),
+  createProcedure("Cleft Lip Repair", "face", "cleft-lip-repair", "Reconstructive surgery for functional and aesthetic cleft correction."),
+  createProcedure("Facial Fracture Repair", "face", "facial-fracture-repair", "Trauma reconstruction to restore facial anatomy and function."),
+  createProcedure("TMJ Surgery", "face", "tmj-surgery", "Jaw joint surgery to address pain and functional limitations."),
+  createProcedure("Fat Grafting to Face", "face", "fat-grafting", "Autologous fat transfer to restore facial volume naturally."),
+  createProcedure("Thread Lift", "face", "thread-lift", "Minimally invasive lift using absorbable support threads."),
+  createProcedure("Under Eye Treatment", "face", "under-eye-treatment", "Targeted correction for hollows, puffiness, and tired look."),
+  createProcedure("Facial Feminization", "face", "facial-feminization", "Comprehensive procedures to soften and feminize facial features."),
+  createProcedure("Mole / Cyst Removal", "face", "mole-cyst-removal", "Minor surgical removal of benign skin lesions."),
+  createProcedure("Ear Lobe Repair", "face", "ear-lobe-repair", "Repair of torn or stretched earlobes for improved appearance."),
+  createProcedure("Botox", "skin", "botox", "Neuromodulator treatment to smooth dynamic facial lines."),
+  createProcedure("Dermal Fillers", "skin", "dermal-fillers", "Injectable fillers for volume restoration and contouring."),
+  createProcedure("Chemical Peels", "skin", "chemical-peels", "Exfoliating treatments to improve tone, texture, and glow."),
+  createProcedure("Microdermabrasion", "skin", "microdermabrasion", "Mechanical exfoliation for smoother and brighter skin."),
+  createProcedure("Microneedling", "skin", "microneedling", "Collagen induction therapy for scar and texture improvement."),
+  createProcedure("Laser Skin Resurfacing", "skin", "laser-resurfacing", "Laser-based renewal for fine lines, scars, and texture."),
+  createProcedure("Laser Hair Removal", "skin", "laser-hair-removal", "Long-term reduction of unwanted facial and body hair."),
+  createProcedure("Laser Tattoo Removal", "skin", "laser-tattoo-removal", "Laser treatment to fade and remove unwanted tattoos."),
+  createProcedure("IPL Photofacial", "skin", "ipl-photofacial", "Light-based therapy for pigmentation and redness concerns."),
+  createProcedure("PRP Facial (Vampire Facial)", "skin", "prp-facial", "Regenerative facial treatment to improve skin quality."),
+  createProcedure("Hydrafacial", "skin", "hydrafacial", "Hydrating multi-step facial for instant refresh and clarity."),
+  createProcedure("Carbon Laser Peel", "skin", "carbon-laser-peel", "Laser peel targeting oiliness, pores, and uneven tone."),
+  createProcedure("Skin Tightening (HIFU)", "skin", "skin-tightening-hifu", "Ultrasound tightening for lifting and collagen stimulation."),
+  createProcedure("Meso Therapy", "skin", "meso-therapy", "Microinjections to nourish and rejuvenate skin."),
+  createProcedure("Anti-Aging Treatment", "skin", "anti-aging", "Combined protocols to address wrinkles and skin laxity."),
+  createProcedure("Pigmentation Treatment", "skin", "pigmentation", "Targeted correction for uneven pigmentation and dark spots."),
+  createProcedure("Acne / Scar Treatment", "skin", "acne-scar", "Personalized treatments for active acne and scar reduction."),
+  createProcedure("Vitiligo Treatment", "skin", "vitiligo", "Medical and procedural options for pigment management."),
+  createProcedure("Melasma Treatment", "skin", "melasma", "Specialized care for hormonally driven pigmentation patches."),
+  createProcedure("Stretch Mark Treatment", "skin", "stretch-marks", "Texture-improving therapy for stretch mark visibility reduction."),
+  createProcedure("Wart Removal", "skin", "wart-removal", "Safe lesion removal using minimally invasive techniques."),
+  createProcedure("Dark Circle Treatment", "skin", "dark-circles", "Under-eye brightening and rejuvenation protocols."),
+  createProcedure("Skin Tag Removal", "skin", "skin-tag-removal", "Quick outpatient removal of benign skin tags."),
+  createProcedure("Keloid Treatment", "skin", "keloid", "Scar modulation therapies for raised keloid tissue."),
+  createProcedure("Rosacea Treatment", "skin", "rosacea", "Redness and inflammation management for rosacea-prone skin."),
+  createProcedure("Hyperhidrosis (Sweat Treatment)", "skin", "hyperhidrosis", "Treatment for excessive sweating in targeted areas."),
+  createProcedure("IV Glutathione Therapy", "skin", "iv-glutathione", "Intravenous antioxidant therapy for skin wellness goals."),
+  createProcedure("Skin Whitening Treatment", "skin", "skin-whitening", "Tone-evening and brightening treatment protocols."),
+  createProcedure("Dermatosis Treatment", "skin", "dermatosis", "Clinical management for chronic inflammatory skin conditions."),
+  createProcedure("Eczema Treatment", "skin", "eczema", "Targeted therapy for itching, dryness, and flare control."),
+  createProcedure("Psoriasis Treatment", "skin", "psoriasis", "Multimodal management of scaling and plaque symptoms."),
+  createProcedure("Fungal Infection Treatment", "skin", "fungal-infection", "Medical treatment for persistent fungal skin infections."),
+  createProcedure("Nail Treatment", "skin", "nail-treatment", "Specialized care for nail disorders and appearance concerns."),
 ]
+
+const legacyToDataCategory: Record<ProcedureCategory, ProcedureDataCategory> = {
+  Hair: "hair",
+  Face: "face",
+  Skin: "skin",
+  Body: "body",
+}
+
+const dataToLegacyCategory: Record<ProcedureDataCategory, ProcedureCategory> = {
+  hair: "Hair",
+  face: "Face",
+  skin: "Skin",
+  body: "Body",
+}
+
+const toDataCategory = (
+  category: ProcedureDataCategory | ProcedureCategory,
+): ProcedureDataCategory =>
+  category in dataToLegacyCategory
+    ? (category as ProcedureDataCategory)
+    : legacyToDataCategory[category as ProcedureCategory]
+
+const toNavItem = (procedure: Procedure): ProcedureNavItem => ({
+  ...procedure,
+  category: dataToLegacyCategory[procedure.category],
+})
+
+export const allCategories: ProcedureCategory[] = ["Hair", "Body", "Face", "Skin"]
 
 export const categoryMeta: Record<
   ProcedureCategory,
@@ -116,26 +173,22 @@ export const categoryMeta: Record<
   },
 }
 
-export function getProceduresByCategory(category: ProcedureCategory): Procedure[] {
-  return procedures.filter((p) => p.category === category)
+export function getProceduresByCategory(
+  category: ProcedureDataCategory | ProcedureCategory,
+): Procedure[] {
+  const normalizedCategory = toDataCategory(category)
+  return procedures.filter((procedure) => procedure.category === normalizedCategory)
 }
 
-export const allCategories: ProcedureCategory[] = ["Hair", "Body", "Face", "Skin"]
+export function getProcedureBySlug(slug: string): Procedure | undefined {
+  return procedures.find((procedure) => procedure.slug === slug)
+}
 
-/**
- * groupedProcedures — pre-computed, module-level cache of procedures grouped
- * by category.  Computed once at import time so that every component that needs
- * the grouped data shares the same reference (no per-render filtering).
- *
- * This matters in the mega-dropdown because it renders ~74 links across 4
- * columns.  Re-filtering on every hover/state change is wasteful; a stable
- * reference also lets React.memo / useMemo consumers skip diffing.
- */
-export const groupedProcedures: Record<ProcedureCategory, Procedure[]> =
+export const groupedProcedures: Record<ProcedureCategory, ProcedureNavItem[]> =
   allCategories.reduce(
-    (acc, cat) => {
-      acc[cat] = procedures.filter((p) => p.category === cat)
+    (acc, category) => {
+      acc[category] = getProceduresByCategory(category).map(toNavItem)
       return acc
     },
-    {} as Record<ProcedureCategory, Procedure[]>,
+    {} as Record<ProcedureCategory, ProcedureNavItem[]>,
   )
