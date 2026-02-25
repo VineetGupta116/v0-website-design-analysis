@@ -191,6 +191,19 @@ export function Navbar() {
     }
   }, [])
 
+  /*
+   * CONTRAST STRATEGY:
+   * When the header is transparent (over the hero), all text must be white/cream
+   * so it's legible against the dark hero overlay.  When scrolled, the header
+   * gets a solid card background, so text switches to charcoal.
+   *
+   * We derive a single `textClass` token here and thread it through every
+   * text element below rather than duplicating the conditional in each spot.
+   */
+  const headerTextColor = scrolled ? "text-charcoal" : "text-cream"
+  const headerSubTextColor = scrolled ? "text-rose-gold" : "text-rose-gold-light"
+  const headerMutedColor = scrolled ? "text-charcoal-light" : "text-cream/70"
+
   /* ── Render ─────────────────────────────────────────────────────────────── */
   return (
     <>
@@ -215,10 +228,10 @@ export function Navbar() {
           {/* ── Logo ──────────────────────────────────────────────────── */}
           <Link href="/" className="flex items-center gap-3">
             <div className="flex flex-col">
-              <span className="font-[var(--font-cormorant)] text-2xl font-semibold tracking-wide text-charcoal">
+              <span className={`font-[var(--font-cormorant)] text-2xl font-semibold tracking-wide transition-colors duration-500 ${headerTextColor}`}>
                 SWI Infinity
               </span>
-              <span className="font-[var(--font-montserrat)] text-[10px] uppercase tracking-[0.25em] text-rose-gold">
+              <span className={`font-[var(--font-montserrat)] text-[10px] uppercase tracking-[0.25em] transition-colors duration-500 ${headerSubTextColor}`}>
                 Aesthetic & Plastic Surgery
               </span>
             </div>
@@ -236,7 +249,7 @@ export function Navbar() {
                 >
                   <button
                     ref={triggerRef}
-                    className="flex items-center gap-1 font-[var(--font-montserrat)] text-sm font-medium uppercase tracking-wider text-charcoal transition-colors hover:text-rose-gold"
+                    className={`flex items-center gap-1 font-[var(--font-montserrat)] text-sm font-medium uppercase tracking-wider transition-colors duration-500 hover:text-rose-gold ${headerTextColor}`}
                     aria-expanded={megaMenuOpen}
                     aria-haspopup="true"
                     aria-controls="mega-dropdown"
@@ -255,7 +268,7 @@ export function Navbar() {
                 <Link
                   key={item.label}
                   href={item.href}
-                  className="font-[var(--font-montserrat)] text-sm font-medium uppercase tracking-wider text-charcoal transition-colors hover:text-rose-gold"
+                  className={`font-[var(--font-montserrat)] text-sm font-medium uppercase tracking-wider transition-colors duration-500 hover:text-rose-gold ${headerTextColor}`}
                 >
                   {item.label}
                 </Link>
@@ -267,7 +280,7 @@ export function Navbar() {
           <div className="hidden items-center gap-4 lg:flex">
             <a
               href="tel:+917017193675"
-              className="flex items-center gap-2 font-[var(--font-montserrat)] text-sm text-charcoal-light transition-colors hover:text-rose-gold"
+              className={`flex items-center gap-2 font-[var(--font-montserrat)] text-sm transition-colors duration-500 hover:text-rose-gold ${headerMutedColor}`}
               aria-label="Call us at +91 701 719 3675"
             >
               <Phone className="h-4 w-4" aria-hidden="true" />
@@ -283,7 +296,7 @@ export function Navbar() {
           {/* ── Mobile hamburger ──────────────────────────────────────── */}
           <button
             onClick={() => setMobileOpen((prev) => !prev)}
-            className="text-charcoal lg:hidden"
+            className={`transition-colors duration-500 lg:hidden ${headerTextColor}`}
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
           >
