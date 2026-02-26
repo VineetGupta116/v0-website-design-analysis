@@ -240,7 +240,7 @@ export function Navbar() {
           {/* ── Desktop links ─────────────────────────────────────────── */}
           <div className="hidden items-center gap-8 lg:flex">
             {navigationItems.map((item) =>
-              item.hasMegaMenu ? (
+             'hasMegaMenu' in item && item.hasMegaMenu ? ( ... ) : ( ... )
                 <div
                   key={item.label}
                   className="relative"
