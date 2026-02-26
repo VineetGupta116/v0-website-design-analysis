@@ -73,7 +73,7 @@ export function WelcomeSection() {
             </div>
 
             <Link
-              href="#procedures"
+              href="/#procedures"
               className="group inline-flex items-center gap-3 font-[var(--font-montserrat)] text-xs font-semibold uppercase tracking-[0.2em] text-rose-gold transition-colors hover:text-rose-gold-dark"
             >
               Learn About Our Philosophy
