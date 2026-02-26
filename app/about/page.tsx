@@ -30,7 +30,7 @@ export default function AboutPage() {
   return (
     <>
       <Navbar />
-      <main className="bg-cream-dark pt-28">
+      <main className="bg-cream-dark pt-28" id="main-content">
         <section className="border-b border-border bg-card">
           <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8 lg:py-20">
             <p className="mb-4 font-[var(--font-montserrat)] text-xs font-semibold uppercase tracking-[0.3em] text-rose-gold">
@@ -49,19 +49,23 @@ export default function AboutPage() {
 
         <section className="py-12 lg:py-16">
           <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-5 lg:px-8">
+            {/* Photo column - sticky on desktop */}
             <div className="lg:col-span-2">
-              <div className="overflow-hidden rounded-3xl border border-border bg-card">
-                <Image
-                  src="/images/dr-swikriti.jpg"
-                  alt="Dr. Swikriti Raniwala, M.Ch. - Consultant Plastic, Reconstructive & Aesthetic Surgeon"
-                  width={900}
-                  height={1200}
-                  className="h-full w-full object-cover"
-                  priority
-                />
+              <div className="lg:sticky lg:top-28">
+                <div className="aspect-[3/4] overflow-hidden rounded-3xl border border-border bg-card">
+                  <Image
+                    src="/images/dr-swikriti.jpg"
+                    alt="Dr. Swikriti Raniwala, M.Ch. - Consultant Plastic, Reconstructive & Aesthetic Surgeon"
+                    width={900}
+                    height={1200}
+                    className="h-full w-full object-cover"
+                    priority
+                  />
+                </div>
               </div>
             </div>
 
+            {/* Content column */}
             <div className="space-y-8 lg:col-span-3">
               <article className="rounded-3xl border border-border bg-card p-6 lg:p-8">
                 <h2 className="font-[var(--font-cormorant)] text-3xl font-light text-charcoal">
