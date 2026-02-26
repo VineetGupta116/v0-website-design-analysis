@@ -28,9 +28,9 @@ import { MegaDropdown } from "@/components/mega-dropdown"
 const navigationItems = [
   { label: "Home", href: "/" },
   { label: "Procedures", href: "/procedures", hasMegaMenu: true },
-  { label: "About", href: "#about" },
-  { label: "Testimonials", href: "#testimonials" },
-  { label: "Contact", href: "#contact" },
+  { label: "About", href: "/#about" },
+  { label: "Testimonials", href: "/#testimonials" },
+  { label: "Contact", href: "/#contact" },
 ] as const
 
 /* ─────────────────────────────────────────────────────────────────────────────
@@ -290,7 +290,7 @@ export function Navbar() {
               <Phone className="h-4 w-4" aria-hidden="true" />
             </a>
             <Link
-              href="#contact"
+              href="/#contact"
               className="rounded-sm border border-rose-gold bg-rose-gold px-6 py-2.5 font-[var(--font-montserrat)] text-xs font-semibold uppercase tracking-widest text-primary-foreground transition-all hover:bg-rose-gold-dark"
             >
               Book Consultation
@@ -330,7 +330,7 @@ export function Navbar() {
               <div className="max-h-[65vh] overflow-y-auto overscroll-contain">
                 {navigationItems.map((item) => (
                   <div key={item.label}>
-                    {item.hasMegaMenu ? (
+                    {'hasMegaMenu' in item && item.hasMegaMenu ? (
                       <div>
                         {/* Procedures accordion toggle */}
                         <button
@@ -445,7 +445,7 @@ export function Navbar() {
               {/* Mobile CTA */}
               <div className="mt-4 border-t border-border pt-4">
                 <Link
-                  href="#contact"
+                  href="/#contact"
                   onClick={() => setMobileOpen(false)}
                   className="block w-full rounded-sm border border-rose-gold bg-rose-gold px-6 py-3 text-center font-[var(--font-montserrat)] text-xs font-semibold uppercase tracking-widest text-primary-foreground"
                 >
