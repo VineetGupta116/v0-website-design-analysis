@@ -12,7 +12,7 @@ const footerLinks = {
     { label: "About Us", href: "/#about" },
     { label: "Our Philosophy", href: "/#about" },
     { label: "Patient Stories", href: "/#testimonials" },
-    { label: "Contact", href: "/#contact" },
+    { label: "Contact", href: "/contact" },
   ],
 }
 
