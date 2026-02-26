@@ -3,14 +3,14 @@ import { Phone, Mail, MapPin } from "lucide-react"
 
 const footerLinks = {
   procedures: [
-    { label: "Hair Restoration", href: "/#procedures" },
-    { label: "Body Contouring", href: "/#procedures" },
-    { label: "Facial Surgery", href: "/#procedures" },
-    { label: "Skin Treatments", href: "/#procedures" },
+    { label: "Hair Restoration", href: "/hair" },
+    { label: "Body Contouring", href: "/body" },
+    { label: "Facial Surgery", href: "/face" },
+    { label: "Skin Treatments", href: "/skin" },
   ],
   clinic: [
-    { label: "About Us", href: "/#about" },
-    { label: "Our Philosophy", href: "/#about" },
+    { label: "About Us", href: "/about" },
+    { label: "Our Philosophy", href: "/about" },
     { label: "Patient Stories", href: "/#testimonials" },
     { label: "Contact", href: "/contact" },
   ],
