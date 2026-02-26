@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Block build/internal paths
+Disallow: /_next/
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://swiinfinity.com/sitemap.xml
