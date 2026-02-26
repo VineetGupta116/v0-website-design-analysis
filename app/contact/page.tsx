@@ -66,7 +66,7 @@ export default function ContactPage() {
   return (
     <>
       <Navbar />
-      <main className="bg-cream-dark pt-28">
+      <main id="main-content" className="bg-cream-dark pt-28">
         <section className="border-b border-border bg-card">
           <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8 lg:py-20">
             <p className="mb-4 font-[var(--font-montserrat)] text-xs font-semibold uppercase tracking-[0.3em] text-rose-gold">
