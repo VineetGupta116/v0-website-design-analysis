@@ -29,7 +29,7 @@ export function CtaSection() {
 
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
-              href="#"
+              href="/contact"
               className="group inline-flex items-center gap-3 bg-rose-gold px-10 py-4 font-[var(--font-montserrat)] text-xs font-semibold uppercase tracking-[0.2em] text-primary-foreground transition-all hover:bg-rose-gold-dark"
             >
               Book Consultation
