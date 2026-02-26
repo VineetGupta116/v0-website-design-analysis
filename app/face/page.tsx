@@ -2,17 +2,21 @@ import type { Metadata } from "next"
 import { CategoryPage } from "@/components/category-page"
 
 export const metadata: Metadata = {
-  title: "Face Procedures | SWI Infinity",
+  title: "Facial Procedures | SWI Infinity",
   description:
-    "Browse facial procedures from rhinoplasty to rejuvenation treatments designed to improve symmetry and confidence.",
+    "Explore advanced facial surgery and rejuvenation procedures for natural, harmonious results at SWI Infinity.",
 }
+
+// Force static generation - prevents client-side routing fallback
+export const dynamic = 'force-static'
+export const dynamicParams = false
 
 export default function FacePage() {
   return (
     <CategoryPage
       category="face"
       title="Face"
-      intro="Review facial surgery and enhancement procedures focused on balance, definition, and natural aesthetics."
+      intro="Discover surgical and non-surgical facial procedures designed to enhance your natural beauty and restore youthful vitality."
     />
   )
 }
