@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Phone, Mail, MapPin } from "lucide-react"
+import { Phone, Mail, MapPin, Instagram, Facebook, Youtube } from "lucide-react"
 
 const footerLinks = {
   procedures: [
@@ -106,6 +106,42 @@ export function Footer() {
                 </div>
               </li>
             </ul>
+
+            {/* Social Media Icons */}
+            <div className="mt-6">
+              <h5 className="mb-3 font-[var(--font-montserrat)] text-xs font-semibold uppercase tracking-wider text-cream/80">
+                Follow Us
+              </h5>
+              <div className="flex gap-4">
+                <a
+                  href="https://www.instagram.com/dr_sraesthetics"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-cream/60 transition-colors hover:text-rose-gold-light"
+                  aria-label="Follow us on Instagram"
+                >
+                  <Instagram className="h-5 w-5" aria-hidden="true" />
+                </a>
+                <a
+                  href="https://www.facebook.com/profile.php?id=61586916916705"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-cream/60 transition-colors hover:text-rose-gold-light"
+                  aria-label="Follow us on Facebook"
+                >
+                  <Facebook className="h-5 w-5" aria-hidden="true" />
+                </a>
+                <a
+                  href="https://www.youtube.com/@drsraesthetics"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-cream/60 transition-colors hover:text-rose-gold-light"
+                  aria-label="Subscribe to our YouTube channel"
+                >
+                  <Youtube className="h-5 w-5" aria-hidden="true" />
+                </a>
+              </div>
+            </div>
           </div>
         </div>
 
