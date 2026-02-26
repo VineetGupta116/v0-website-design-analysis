@@ -22,6 +22,10 @@ interface FormErrors {
   message?: string
 }
 
+// Web3Forms API key from environment variable with fallback
+const WEB3FORMS_KEY =
+  process.env.NEXT_PUBLIC_WEB3FORMS_KEY ?? "a41211fc-dfa9-48e9-bb66-d78cecf05732"
+
 export default function ContactPage() {
   const [formData, setFormData] = useState<FormData>({
     name: "",
@@ -52,9 +56,13 @@ export default function ContactPage() {
   }
 
   const validatePhone = (phone: string): boolean => {
-    // Indian phone: 10 digits, optional +91 or 0 prefix
-    const phoneRegex = /^(\+91|0)?[6-9]\d{9}$/
-    return phoneRegex.test(phone.replace(/[\s-]/g, ""))
+    // Strip common separators: spaces, hyphens, parentheses
+    const cleaned = phone.replace(/[\s\-\(\)]/g, "")
+    
+    // Match: 10 digits starting with 6-9 OR +91 followed by 10 digits starting with 6-9
+    const phoneRegex = /^(?:\+91)?[6-9]\d{9}$/
+    
+    return phoneRegex.test(cleaned)
   }
 
   const validateForm = (): boolean => {
@@ -78,7 +86,7 @@ export default function ContactPage() {
     if (!formData.phone.trim()) {
       newErrors.phone = "Phone number is required"
     } else if (!validatePhone(formData.phone)) {
-      newErrors.phone = "Please enter a valid 10-digit Indian phone number"
+      newErrors.phone = "Please enter a valid 10-digit Indian mobile number (e.g., 9876543210 or +91-98765-43210)"
     }
 
     // Message validation
@@ -124,7 +132,7 @@ export default function ContactPage() {
           Accept: "application/json",
         },
         body: JSON.stringify({
-          access_key: "a41211fc-dfa9-48e9-bb66-d78cecf05732",
+          access_key: WEB3FORMS_KEY,
           name: formData.name,
           email: formData.email,
           phone: formData.phone,
@@ -133,6 +141,10 @@ export default function ContactPage() {
           subject: `New Consultation Request from ${formData.name}`,
         }),
       })
+
+      if (!response.ok) {
+        throw new Error(`Web3Forms API failed with status ${response.status}`)
+      }
 
       const data = await response.json()
 
@@ -146,17 +158,15 @@ export default function ContactPage() {
         setErrors({})
         formRef.current?.reset()
       } else {
-        throw new Error("Form submission failed")
+        throw new Error("Web3Forms responded with success=false")
       }
     } catch (error) {
       setFormStatus("error")
       setFeedbackMessage(
-        "We couldn't submit your inquiry right now. Please try again in a moment or contact us directly.",
+        "We couldn't submit your inquiry right now. Please try again in a moment or contact us directly at +91 70171 93675.",
       )
-      // Clear form data on error as well
-      setFormData({ name: "", email: "", phone: "", message: "" })
-      setErrors({})
-      formRef.current?.reset()
+      console.error("Form submission error:", error)
+      // Keep form data so user can retry without re-typing
     }
   }
 
