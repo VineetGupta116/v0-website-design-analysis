@@ -330,7 +330,7 @@ export function Navbar() {
               <div className="max-h-[65vh] overflow-y-auto overscroll-contain">
                 {navigationItems.map((item) => (
                   <div key={item.label}>
-                    {item.hasMegaMenu ? (
+                    {'hasMegaMenu' in item && item.hasMegaMenu ? (
                       <div>
                         {/* Procedures accordion toggle */}
                         <button
