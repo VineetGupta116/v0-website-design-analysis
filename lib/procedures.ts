@@ -25,6 +25,13 @@ const categoryImageMap: Record<ProcedureDataCategory, string> = {
   body: "/images/procedure-body.jpg",
 }
 
+const categoryCareFocus: Record<ProcedureDataCategory, string> = {
+  hair: "hair restoration and scalp health",
+  face: "facial balance, harmony, and expression",
+  skin: "skin quality, clarity, and long-term maintenance",
+  body: "body contouring and proportion refinement",
+}
+
 const createProcedure = (
   name: string,
   category: ProcedureDataCategory,
@@ -35,11 +42,11 @@ const createProcedure = (
   slug,
   category,
   shortDescription,
-  longDescription: `Detailed information for ${name} will be added soon.`,
+  longDescription: `${shortDescription} At SWI Infinity, each ${name} plan is personalized after a detailed consultation to align treatment technique, recovery timeline, and expected outcomes with your goals. Our team follows evidence-based protocols focused on safety, comfort, and natural-looking results within ${categoryCareFocus[category]}.`,
   imagePath: categoryImageMap[category],
   seoTitle: `${name} | SWI Infinity`,
   seoDescription: `${shortDescription} Learn more about ${name} at SWI Infinity.`,
-  url: `/${category}/${slug}`,
+  url: `/procedures/${slug}/`,
 })
 
 export const procedures: Procedure[] = [
@@ -117,6 +124,7 @@ export const procedures: Procedure[] = [
   createProcedure("Psoriasis Treatment", "skin", "psoriasis", "Multimodal management of scaling and plaque symptoms."),
   createProcedure("Fungal Infection Treatment", "skin", "fungal-infection", "Medical treatment for persistent fungal skin infections."),
   createProcedure("Nail Treatment", "skin", "nail-treatment", "Specialized care for nail disorders and appearance concerns."),
+  createProcedure("Nonsurgical Skin Rejuvenation", "skin", "nonsurgical-skin-rejuvenation", "Customized non-invasive combination therapies for brighter, healthier-looking skin."),
 ]
 
 const legacyToDataCategory: Record<ProcedureCategory, ProcedureDataCategory> = {

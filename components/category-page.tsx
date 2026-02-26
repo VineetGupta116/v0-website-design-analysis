@@ -46,7 +46,7 @@ export function CategoryPage({ category, title, intro }: CategoryPageProps) {
               {procedures.map((procedure) => (
                 <Link
                   key={procedure.slug}
-                  href={`/procedures/${procedure.slug}`}
+                  href={`/procedures/${procedure.slug}/`}
                   className="group rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-0.5 hover:border-rose-gold/50 hover:shadow-md"
                 >
                   <p className="mb-2 font-[var(--font-montserrat)] text-[11px] font-semibold uppercase tracking-[0.2em] text-rose-gold">

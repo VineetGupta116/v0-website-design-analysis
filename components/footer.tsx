@@ -3,16 +3,16 @@ import { Phone, Mail, MapPin } from "lucide-react"
 
 const footerLinks = {
   procedures: [
-    { label: "Hair Restoration", href: "#procedures" },
-    { label: "Body Contouring", href: "#procedures" },
-    { label: "Facial Surgery", href: "#procedures" },
-    { label: "Skin Treatments", href: "#procedures" },
+    { label: "Hair Restoration", href: "/#procedures" },
+    { label: "Body Contouring", href: "/#procedures" },
+    { label: "Facial Surgery", href: "/#procedures" },
+    { label: "Skin Treatments", href: "/#procedures" },
   ],
   clinic: [
-    { label: "About Us", href: "#about" },
-    { label: "Our Philosophy", href: "#about" },
-    { label: "Patient Stories", href: "#testimonials" },
-    { label: "Contact", href: "#contact" },
+    { label: "About Us", href: "/about" },
+    { label: "Our Philosophy", href: "/about" },
+    { label: "Patient Stories", href: "/#testimonials" },
+    { label: "Contact", href: "/contact" },
   ],
 }
 
@@ -116,13 +116,13 @@ export function Footer() {
           </p>
           <div className="flex gap-6">
             <Link
-              href="#"
+              href="/privacy"
               className="font-[var(--font-montserrat)] text-xs text-cream/40 transition-colors hover:text-rose-gold-light"
             >
               Privacy Policy
             </Link>
             <Link
-              href="#"
+              href="/terms"
               className="font-[var(--font-montserrat)] text-xs text-cream/40 transition-colors hover:text-rose-gold-light"
             >
               Terms of Service

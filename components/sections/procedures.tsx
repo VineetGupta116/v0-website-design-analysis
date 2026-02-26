@@ -206,7 +206,7 @@ export function ProceduresSection() {
             </Link>
           ) : (
             <Link
-              href={activeCategoryMeta?.href ?? "#"}
+              href={activeCategoryMeta?.href ?? "/procedures"}
               className="group inline-flex items-center gap-2 font-[var(--font-montserrat)] text-sm font-semibold uppercase tracking-wider text-rose-gold transition-colors hover:text-rose-gold-dark"
             >
               Explore All {activeCategory} Procedures
