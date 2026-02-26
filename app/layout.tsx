@@ -20,7 +20,7 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: 'SWI Infinity | Premier Aesthetic & Plastic Surgery Clinic',
   description:
-    'Where surgical excellence meets aesthetic harmony. 74 advanced procedures across hair restoration, body contouring, facial surgery, and skin treatments.',
+    'Where surgical excellence meets aesthetic harmony. 75 advanced procedures across hair restoration, body contouring, facial surgery, and skin treatments.',
   icons: {
     icon: [
       {
