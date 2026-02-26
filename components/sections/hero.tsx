@@ -111,7 +111,7 @@ export function HeroSection() {
 
             {/* CTA */}
             <Link
-              href="#procedures"
+              href="/#procedures"
               className="group inline-flex items-center gap-3 border border-rose-gold bg-rose-gold/10 px-8 py-4 font-[var(--font-montserrat)] text-xs font-semibold uppercase tracking-[0.2em] text-cream backdrop-blur-sm transition-all duration-300 hover:bg-rose-gold hover:text-primary-foreground"
             >
               View Procedures

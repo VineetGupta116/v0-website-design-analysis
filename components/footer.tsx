@@ -9,8 +9,8 @@ const footerLinks = {
     { label: "Skin Treatments", href: "/#procedures" },
   ],
   clinic: [
-    { label: "About Us", href: "/about" },
-    { label: "Our Philosophy", href: "/about" },
+    { label: "About Us", href: "/#about" },
+    { label: "Our Philosophy", href: "/#about" },
     { label: "Patient Stories", href: "/#testimonials" },
     { label: "Contact", href: "/contact" },
   ],
