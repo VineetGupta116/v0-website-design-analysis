@@ -7,7 +7,7 @@ import { Footer } from "@/components/footer"
 import { Navbar } from "@/components/navbar"
 import { getProcedureBySlug, procedures } from "@/lib/procedures"
 
-// Required for static export – pre‑generates all procedure pages at build time
+// Required for static export – pre‑generates all procedure pages
 export async function generateStaticParams() {
   return procedures.map((procedure) => ({
     slug: procedure.slug,
