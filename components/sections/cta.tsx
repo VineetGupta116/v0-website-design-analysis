@@ -57,7 +57,7 @@ export function CtaSection() {
             <div className="h-8 w-px bg-border" />
             <div className="text-center">
               <span className="font-[var(--font-cormorant)] text-3xl font-light text-charcoal">
-                74
+                75
               </span>
               <p className="font-[var(--font-montserrat)] text-[10px] uppercase tracking-wider text-charcoal-light">
                 Procedures
