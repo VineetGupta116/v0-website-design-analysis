@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Cormorant_Garamond, Montserrat } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { FloatingWhatsApp } from '@/components/floating-whatsapp'
 import './globals.css'
 
 const cormorant = Cormorant_Garamond({
@@ -53,6 +54,7 @@ export default function RootLayout({
     <html lang="en" className={`${cormorant.variable} ${montserrat.variable}`} suppressHydrationWarning>
       <body className="antialiased" suppressHydrationWarning>
         {children}
+        <FloatingWhatsApp />
         <Analytics />
       </body>
     </html>
