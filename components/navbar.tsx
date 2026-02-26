@@ -239,41 +239,45 @@ export function Navbar() {
 
           {/* ── Desktop links ─────────────────────────────────────────── */}
           <div className="hidden items-center gap-8 lg:flex">
-            {navigationItems.map((item) =>
-             'hasMegaMenu' in item && item.hasMegaMenu ? ( ... ) : ( ... )
-                <div
-                  key={item.label}
-                  className="relative"
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  <button
-                    ref={triggerRef}
-                    className={`flex items-center gap-1 font-[var(--font-montserrat)] text-sm font-medium uppercase tracking-wider transition-colors duration-500 hover:text-rose-gold ${headerTextColor}`}
-                    aria-expanded={megaMenuOpen}
-                    aria-haspopup="true"
-                    aria-controls="mega-dropdown"
-                    onClick={() => setMegaMenuOpen((prev) => !prev)}
+            {navigationItems.map((item) => {
+              if ('hasMegaMenu' in item && item.hasMegaMenu) {
+                return (
+                  <div
+                    key={item.label}
+                    className="relative"
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                  >
+                    <button
+                      ref={triggerRef}
+                      className={`flex items-center gap-1 font-[var(--font-montserrat)] text-sm font-medium uppercase tracking-wider transition-colors duration-500 hover:text-rose-gold ${headerTextColor}`}
+                      aria-expanded={megaMenuOpen}
+                      aria-haspopup="true"
+                      aria-controls="mega-dropdown"
+                      onClick={() => setMegaMenuOpen((prev) => !prev)}
+                    >
+                      {item.label}
+                      <ChevronDown
+                        className={`h-3 w-3 transition-transform duration-300 ${
+                          megaMenuOpen ? "rotate-180" : ""
+                        }`}
+                        aria-hidden="true"
+                      />
+                    </button>
+                  </div>
+                );
+              } else {
+                return (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    className={`font-[var(--font-montserrat)] text-sm font-medium uppercase tracking-wider transition-colors duration-500 hover:text-rose-gold ${headerTextColor}`}
                   >
                     {item.label}
-                    <ChevronDown
-                      className={`h-3 w-3 transition-transform duration-300 ${
-                        megaMenuOpen ? "rotate-180" : ""
-                      }`}
-                      aria-hidden="true"
-                    />
-                  </button>
-                </div>
-              ) : (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  className={`font-[var(--font-montserrat)] text-sm font-medium uppercase tracking-wider transition-colors duration-500 hover:text-rose-gold ${headerTextColor}`}
-                >
-                  {item.label}
-                </Link>
-              ),
-            )}
+                  </Link>
+                );
+              }
+            })}
           </div>
 
           {/* ── Desktop CTA ───────────────────────────────────────────── */}
