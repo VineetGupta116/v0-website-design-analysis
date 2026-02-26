@@ -7,14 +7,34 @@ import { Footer } from "@/components/footer"
 import { Navbar } from "@/components/navbar"
 import { getProcedureBySlug, procedures } from "@/lib/procedures"
 
+// Required for static export – pre‑generates all procedure pages at build time
 export async function generateStaticParams() {
   return procedures.map((procedure) => ({
     slug: procedure.slug,
-  }));
+  }))
 }
 
 interface ProcedureDetailPageProps {
   params: Promise<{ slug: string }>
+}
+
+export async function generateMetadata({
+  params,
+}: ProcedureDetailPageProps): Promise<Metadata> {
+  const { slug } = await params
+  const procedure = getProcedureBySlug(slug)
+
+  if (!procedure) {
+    return {
+      title: "Procedure Not Found | SWI Infinity",
+      description: "The requested procedure could not be found.",
+    }
+  }
+
+  return {
+    title: procedure.seoTitle,
+    description: procedure.seoDescription,
+  }
 }
 
 const getHighlights = (procedureName: string, shortDescription: string) => [
@@ -40,25 +60,6 @@ const faqItems = [
       "Yes. Every plan is customized to your anatomy, concerns, and desired outcomes.",
   },
 ]
-
-export async function generateMetadata({
-  params,
-}: ProcedureDetailPageProps): Promise<Metadata> {
-  const { slug } = await params
-  const procedure = getProcedureBySlug(slug)
-
-  if (!procedure) {
-    return {
-      title: "Procedure Not Found | SWI Infinity",
-      description: "The requested procedure could not be found.",
-    }
-  }
-
-  return {
-    title: procedure.seoTitle,
-    description: procedure.seoDescription,
-  }
-}
 
 export default async function ProcedureDetailPage({ params }: ProcedureDetailPageProps) {
   const { slug } = await params
