@@ -28,12 +28,30 @@ export async function generateMetadata({
     return {
       title: "Procedure Not Found | SWI Infinity",
       description: "The requested procedure could not be found.",
+      alternates: {
+        canonical: "/procedures",
+      },
     }
   }
 
   return {
     title: procedure.seoTitle,
     description: procedure.seoDescription,
+    alternates: {
+      canonical: `/procedures/${procedure.slug}`,
+    },
+    openGraph: {
+      type: "article",
+      url: `/procedures/${procedure.slug}`,
+      title: procedure.seoTitle,
+      description: procedure.seoDescription,
+      images: [
+        {
+          url: procedure.imagePath,
+          alt: procedure.name,
+        },
+      ],
+    },
   }
 }
 
@@ -98,6 +116,7 @@ export default async function ProcedureDetailPage({ params }: ProcedureDetailPag
                 width={1600}
                 height={900}
                 priority
+                sizes="(max-width: 768px) 100vw, 1200px"
                 className="h-auto w-full object-cover"
               />
             </div>

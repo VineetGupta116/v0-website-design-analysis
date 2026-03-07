@@ -1,5 +1,15 @@
+import type { Metadata } from "next"
+
 import { Footer } from "@/components/footer"
 import { Navbar } from "@/components/navbar"
+
+export const metadata: Metadata = {
+  title: "Privacy Policy",
+  description: "Read how SWI Infinity collects, uses, and protects personal information.",
+  alternates: {
+    canonical: "/privacy",
+  },
+}
 
 export default function PrivacyPage() {
   return (

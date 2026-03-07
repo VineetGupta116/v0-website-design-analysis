@@ -1,7 +1,17 @@
+import type { Metadata } from "next"
 import Image from "next/image"
 
 import { Footer } from "@/components/footer"
 import { Navbar } from "@/components/navbar"
+
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "Meet Dr. Swikriti Raniwala and learn about SWI Infinity's credentials, approach, and philosophy for safe, natural-looking aesthetic outcomes.",
+  alternates: {
+    canonical: "/about",
+  },
+}
 
 const credentials = [
   "MBBS - S.N. Medical College, Agra (2010-2016)",
@@ -58,6 +68,7 @@ export default function AboutPage() {
                     alt="Dr. Swikriti Raniwala, M.Ch. - Consultant Plastic, Reconstructive & Aesthetic Surgeon"
                     width={900}
                     height={1200}
+                    sizes="(max-width: 1024px) 100vw, 40vw"
                     className="h-full w-full object-cover"
                     priority
                   />

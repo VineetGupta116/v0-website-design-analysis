@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: "Facial Procedures | SWI Infinity",
   description:
     "Explore advanced facial surgery and rejuvenation procedures for natural, harmonious results at SWI Infinity.",
+  alternates: {
+    canonical: "/face",
+  },
 }
 
 // Force static generation - prevents client-side routing fallback
