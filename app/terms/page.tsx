@@ -1,5 +1,15 @@
+import type { Metadata } from "next"
+
 import { Footer } from "@/components/footer"
 import { Navbar } from "@/components/navbar"
+
+export const metadata: Metadata = {
+  title: "Terms of Service",
+  description: "Review SWI Infinity's website and service usage terms.",
+  alternates: {
+    canonical: "/terms",
+  },
+}
 
 export default function TermsPage() {
   return (

@@ -1,5 +1,15 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { procedures } from '@/lib/procedures';
+
+export const metadata: Metadata = {
+  title: 'All Procedures',
+  description:
+    'Browse all surgical and non-surgical aesthetic procedures offered at SWI Infinity.',
+  alternates: {
+    canonical: '/procedures',
+  },
+};
 
 export default function ProceduresPage() {
   return (

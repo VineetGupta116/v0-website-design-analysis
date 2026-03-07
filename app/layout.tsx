@@ -19,9 +19,39 @@ const montserrat = Montserrat({
 })
 
 export const metadata: Metadata = {
-  title: 'SWI Infinity | Premier Aesthetic & Plastic Surgery Clinic',
+  metadataBase: new URL('https://swiinfinity.com'),
+  title: {
+    default: 'SWI Infinity | Premier Aesthetic & Plastic Surgery Clinic',
+    template: '%s | SWI Infinity',
+  },
   description:
     'Where surgical excellence meets aesthetic harmony. 75 advanced procedures across hair restoration, body contouring, facial surgery, and skin treatments.',
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    type: 'website',
+    url: '/',
+    title: 'SWI Infinity | Premier Aesthetic & Plastic Surgery Clinic',
+    description:
+      'Where surgical excellence meets aesthetic harmony. 75 advanced procedures across hair restoration, body contouring, facial surgery, and skin treatments.',
+    siteName: 'SWI Infinity',
+    images: [
+      {
+        url: '/images/hero-1.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'SWI Infinity clinic hero image',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'SWI Infinity | Premier Aesthetic & Plastic Surgery Clinic',
+    description:
+      'Where surgical excellence meets aesthetic harmony. 75 advanced procedures across hair restoration, body contouring, facial surgery, and skin treatments.',
+    images: ['/images/hero-1.jpg'],
+  },
   icons: {
     icon: [
       {

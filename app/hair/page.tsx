@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: "Hair Procedures | SWI Infinity",
   description:
     "Explore advanced hair restoration procedures including transplant, PRP, and scalp treatments at SWI Infinity.",
+  alternates: {
+    canonical: "/hair",
+  },
 }
 
 // Force static generation - prevents client-side routing fallback

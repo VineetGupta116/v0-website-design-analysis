@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: "Body Contouring Procedures | SWI Infinity",
   description:
     "Explore advanced body contouring, sculpting, and augmentation procedures at SWI Infinity for your desired body shape.",
+  alternates: {
+    canonical: "/body",
+  },
 }
 
 // Force static generation - prevents client-side routing fallback
