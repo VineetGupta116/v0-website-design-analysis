@@ -1,0 +1,50 @@
+name: Build WOW Creations WordPress Theme Package
+
+on:
+  push:
+    branches:
+      - main
+      - work
+    paths:
+      - 'wow-creations-theme/**'
+      - 'scripts/build-wow-theme-zip.sh'
+      - '.github/workflows/wow-theme-package.yml'
+  pull_request:
+    paths:
+      - 'wow-creations-theme/**'
+      - 'scripts/build-wow-theme-zip.sh'
+      - '.github/workflows/wow-theme-package.yml'
+  workflow_dispatch:
+  release:
+    types:
+      - published
+
+permissions:
+  contents: write
+
+jobs:
+  package-theme:
+    name: Package WordPress theme on GitHub
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build theme ZIP
+        run: ./scripts/build-wow-theme-zip.sh
+
+      - name: Validate ZIP archive
+        run: unzip -t wow-creations-theme.zip
+
+      - name: Upload GitHub Actions artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: wow-creations-theme
+          path: wow-creations-theme.zip
+          if-no-files-found: error
+
+      - name: Attach ZIP to GitHub Release
+        if: github.event_name == 'release'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "${{ github.event.release.tag_name }}" wow-creations-theme.zip --clobber
