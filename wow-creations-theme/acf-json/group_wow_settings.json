@@ -1,0 +1,20 @@
+{
+  "key": "group_wow_settings",
+  "title": "WOW Settings",
+  "fields": [
+    {"key":"field_whatsapp_number","label":"WhatsApp Number","name":"whatsapp_number","type":"text","instructions":"Use international format without +, for example 919999999999.","default_value":"919999999999"},
+    {"key":"field_instagram_url","label":"Instagram URL","name":"instagram_url","type":"url","default_value":"https://www.instagram.com/wowcreations__"},
+    {"key":"field_business_phone","label":"Business Phone","name":"business_phone","type":"text"},
+    {"key":"field_business_email","label":"Business Email","name":"business_email","type":"email"},
+    {"key":"field_founder_name","label":"Founder Name","name":"founder_name","type":"text","default_value":"Jyoti Aggarwal"},
+    {"key":"field_founder_photo","label":"Founder Photo","name":"founder_photo","type":"image","return_format":"array","preview_size":"medium"},
+    {"key":"field_packaging_images","label":"Packaging Images","name":"packaging_images","type":"gallery","return_format":"array","preview_size":"medium","insert":"append"}
+  ],
+  "location": [[{"param":"options_page","operator":"==","value":"wow-settings"}]],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "active": true
+}
